@@ -48,6 +48,11 @@ const errorBody = z.object({ error: z.string() }).catch({ error: "" });
  */
 function headers(organizationId: string, maxCost: string) {
   return {
+    // Treg's router reads the child body as JSON. If this request advertises
+    // gzip, that Accept-Encoding is forwarded to Hunter and the routed
+    // response is compressed; json.loads fails and treg.companies.enrich
+    // reports a miss even when Hunter returned a company.
+    "Accept-Encoding": "identity",
     "X-Treg-Route-Max-Cost": maxCost,
     ...(/^[\w.:-]{1,128}$/.test(organizationId)
       ? { "X-Treg-Meta": `workspace=${organizationId}` }

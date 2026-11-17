@@ -13,9 +13,14 @@ import type {
 // How the CRM reaches its enrichment providers. The Every App gateway holds
 // each key and puts it on the call, so the CRM never sees one; each call is
 // the member's who asked (gateway-attribution.ts). In local dev, with no
-// gateway, the SDK uses CONTEXT_API_KEY and TREG_API_TOKEN from .dev.vars.
+// gateway, the SDK uses CONTEXT_API_KEY and TREG_SELF_API_TOKEN from .dev.vars.
 
 export type ProviderFetch = typeof fetch;
+
+/** Gateway capability id. Built-in `treg` only reaches treg.to, so this install uses `treg-self`. */
+function gatewayProviderId(provider: EnrichmentProvider): EnrichmentProvider | "treg-self" {
+  return provider === "treg" ? "treg-self" : provider;
+}
 
 async function gatewayEnv(): Promise<object> {
   return (await getWorkersEnv()) ?? {};
@@ -27,7 +32,11 @@ export async function providerFetch(
 ): Promise<ProviderFetch | null> {
   const env = await gatewayEnv();
   try {
-    return integrationFetch({ env, provider, for: gatewayCallFor(env) });
+    return integrationFetch({
+      env,
+      provider: gatewayProviderId(provider),
+      for: gatewayCallFor(env),
+    });
   } catch (error) {
     // No gateway binding and, in local dev, no key in .dev.vars.
     if (error instanceof ConfigurationError) return null;
@@ -43,7 +52,7 @@ export async function providerStatus(
     const env = await gatewayEnv();
     const status = await integrationStatus({
       env,
-      provider,
+      provider: gatewayProviderId(provider),
       for: gatewayCallFor(env) ?? { background: true },
     });
     return {

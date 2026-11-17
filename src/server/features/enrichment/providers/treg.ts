@@ -11,12 +11,12 @@ import {
 import type { ProviderFetch } from "./gateway";
 import { failureReason, postJson, type Answer } from "./http";
 
-// Treg (treg.to): one token over many people and company data vendors, paid
+// Treg (self-hosted at treg.seanguillermo.com): one token over many people and company data vendors, paid
 // per lookup. Its routed tools take what the CRM knows, try vendors cheapest
 // first until one has a match, and answer in one shape whichever served:
 // `{ output, raw, _treg }`. No photographs and no logos.
 
-const API = "https://treg.to/call";
+const API = "https://treg.seanguillermo.com/call";
 const NAME = "Treg";
 
 // The most one lookup may cost, in USD, across every vendor Treg tries for

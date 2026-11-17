@@ -1,0 +1,11 @@
+{
+  "id": "treg-self",
+  "name": "Treg (self-hosted)",
+  "description": "People and company data through Sean's self-hosted Treg, using the team's own vendor keys.",
+  "docs": "https://treg.seanguillermo.com/meta",
+  "hosts": ["treg.seanguillermo.com"],
+  "auth": { "kind": "header", "header": "X-Treg-Token", "secret": "TREG_SELF_API_TOKEN" },
+  "access": ["read"],
+  "readMethods": ["GET", "POST"],
+  "hint": "A team token from the self-hosted Treg (https://treg.seanguillermo.com). The Gateway sends it only to that host as X-Treg-Token."
+}

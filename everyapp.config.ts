@@ -50,16 +50,17 @@ export default {
     },
     // Enrichment (src/server/features/enrichment): a member selects contacts
     // or companies and asks for what they are missing. Either provider's key
-    // is the gateway's; the CRM works without both. Treg is not in the
-    // gateway's catalog, so its spec is bundled
-    // (.everyapp/providers/treg.json) and registered at deploy.
+    // is the gateway's; the CRM works without both. The built-in catalog
+    // provider `treg` only talks to treg.to, so this install uses a bundled
+    // `treg-self` spec (.everyapp/providers/treg-self.json) aimed at the
+    // self-hosted registry and registered at deploy.
     context: {
       access: "read",
       why: "Fills in the contacts and companies a member selects: titles and profiles, photos, logos and brand data.",
     },
-    treg: {
+    "treg-self": {
       access: "read",
-      why: "Fills in the contacts and companies a member selects: titles, profiles and company details.",
+      why: "Fills in the contacts and companies a member selects: titles, profiles and company details, via the self-hosted Treg.",
     },
   },
   // Optional, each all or nothing: the CRM opens without any of them, and
@@ -95,11 +96,11 @@ export default {
     },
     treg: {
       name: "Enrichment with Treg",
-      why: "Members select contacts and companies to fill in: titles, profiles and company details, paid per lookup. No photos or logos.",
+      why: "Members select contacts and companies to fill in: titles, profiles and company details from the self-hosted Treg. No photos or logos.",
       steps: [
-        "Create a team token on Treg (treg org agent-new <name>): https://treg.to/docs",
+        "Set TREG_SELF_API_TOKEN to a team token from the self-hosted Treg at https://treg.seanguillermo.com (for example Doppler TREG_GCP_TOKEN_INBOX_SEANGUILLERMO_COM).",
       ],
-      capabilities: ["treg"],
+      capabilities: ["treg-self"],
     },
     // docs/maintainers/runbooks/erase-organization.md
     erasure: {

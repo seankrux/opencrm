@@ -4,6 +4,7 @@ import { bulkTools } from "@/server/everyapp/tools/bulk";
 import { companyTools } from "@/server/everyapp/tools/companies";
 import { contactTools } from "@/server/everyapp/tools/contacts";
 import { dashboardTools } from "@/server/everyapp/tools/dashboard";
+import { enrichmentTools } from "@/server/everyapp/tools/enrichment";
 import { dealTools } from "@/server/everyapp/tools/deals";
 import { fieldTools } from "@/server/everyapp/tools/fields";
 import { listTools } from "@/server/everyapp/tools/lists";
@@ -39,6 +40,7 @@ const tools = {
   ...mailTools,
   ...trackingTools,
   ...dashboardTools,
+  ...enrichmentTools,
   ...bulkTools,
   ...savedViewTools,
 };

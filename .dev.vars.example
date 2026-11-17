@@ -7,4 +7,4 @@ MICROSOFT_365_ACCESS_TOKEN=
 # Enrichment in local development: your own keys, as the gateway would hold
 # them. Either or both.
 CONTEXT_API_KEY=
-TREG_API_TOKEN=
+TREG_SELF_API_TOKEN=

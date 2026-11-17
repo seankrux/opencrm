@@ -60,10 +60,10 @@ The biggest difference is pictures: Context.dev brings contact photos and compan
 
 ```bash
 pnpm everyapp secret set CONTEXT_API_KEY   # an API key from the Context.dev dashboard
-pnpm everyapp secret set TREG_API_TOKEN    # a team token: treg org agent-new <name>
+pnpm everyapp secret set TREG_SELF_API_TOKEN    # a team token from the self-hosted Treg at treg.seanguillermo.com
 ```
 
-Treg isn't in the gateway's built-in catalog, so the CRM bundles its provider spec (`.everyapp/providers/treg.json`) and the install asks to register it. With both set up, an owner or admin picks which one contacts use and which one companies use in Settings → Connections → Enrichment. With one, that one does both.
+The built-in catalog provider `treg` only reaches treg.to, so this install bundles `treg-self` (`.everyapp/providers/treg-self.json`) aimed at the self-hosted Treg, and the install asks to register it. With both set up, an owner or admin picks which one contacts use and which one companies use in Settings → Connections → Enrichment. With one, that one does both.
 
 Lookups send a provider what the record holds: a contact's email address, name, LinkedIn profile and employer, or a company's domain. Check that your privacy notice covers it before you turn a provider on.
 

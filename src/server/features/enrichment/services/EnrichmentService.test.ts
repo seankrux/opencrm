@@ -31,7 +31,7 @@ import { EnrichmentService } from "./EnrichmentService";
 
 const A = { organizationId: "org_a", userId: "user_a" };
 const B = { organizationId: "org_b", userId: "user_b" };
-const TREG_PERSON = "https://treg.to/call/treg.people.enrich";
+const TREG_PERSON = "https://treg.seanguillermo.com/call/treg.people.enrich";
 const CONTEXT_PERSON = "https://api.context.dev/v1/people/enrich";
 const CONTEXT_BRAND = "https://api.context.dev/v1/brand/retrieve";
 

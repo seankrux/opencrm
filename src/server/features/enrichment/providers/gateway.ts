@@ -18,7 +18,9 @@ import type {
 export type ProviderFetch = typeof fetch;
 
 /** Gateway capability id. Built-in `treg` only reaches treg.to, so this install uses `treg-self`. */
-function gatewayProviderId(provider: EnrichmentProvider): EnrichmentProvider | "treg-self" {
+function gatewayProviderId(
+  provider: EnrichmentProvider,
+): EnrichmentProvider | "treg-self" {
   return provider === "treg" ? "treg-self" : provider;
 }
 
